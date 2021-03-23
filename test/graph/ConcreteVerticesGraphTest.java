@@ -22,7 +22,7 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
      * Provide a ConcreteVerticesGraph for tests in GraphInstanceTest.
      */
     @Override public Graph<String> emptyInstance() {
-        return new ConcreteVerticesGraph();
+        return new ConcreteVerticesGraph<String>();
     }
     
     /*
@@ -44,8 +44,8 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     
     // tests for operations of Vertex
     @Test public void testAddWeightToOneVertex() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("Dog");
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("Dog");
         assertEquals(v2.addWeightTo(v1, 2), 0);
         assertEquals(v2.addWeightTo(v1, 2), 2);
         assertEquals(v2.addWeightTo(v1, 3), 2);
@@ -54,9 +54,9 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     }
     
     @Test public void testAddWeightToTwoVertex() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("Dog");
-        Vertex v3 = new Vertex("Cat");
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("Dog");
+        Vertex<String> v3 = new Vertex<>("Cat");
         assertEquals(v1.addWeightTo(v2, 8), 0);
         assertEquals(v1.addWeightTo(v3, 8), 0);
         assertEquals(v3.addWeightTo(v1, 1), 0);
@@ -64,17 +64,17 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     }
     
     @Test public void testAddWeightToOneVertexThenRemove() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("Dog");
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("Dog");
         assertEquals(v1.addWeightTo(v2, 8), 0);
         assertEquals(v1.addWeightTo(v2, 0), 8);
         assertTrue(v1.getVerticesFrom().isEmpty());
     }
     
     @Test public void testAddWeightToTwoVerticesThenRemoveOne() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("Dog");
-        Vertex v3 = new Vertex("Cat");
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("Dog");
+        Vertex<String> v3 = new Vertex<>("Cat");
         assertEquals(v1.addWeightTo(v2, 2), 0);
         assertEquals(v1.addWeightTo(v3, 3), 0);
         assertEquals(v1.addWeightTo(v2, 0), 2);
@@ -84,14 +84,14 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     
     
     @Test public void testGetVerticesToZeroVertex() {
-        Vertex v1 = new Vertex("Chicken");
+        Vertex<String> v1 = new Vertex<>("Chicken");
         assertTrue(v1.getVerticesFrom().isEmpty());
     }
     
     @Test public void testGetVerticesToOneVertexOneWay() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("");
-        Map<Vertex, Integer> target = new HashMap<>();
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("");
+        Map<Vertex<String>, Integer> target = new HashMap<>();
         
         target.put(v2, 3);
         v1.addWeightTo(v2, 3);
@@ -99,9 +99,9 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     }
     
     @Test public void testGetVerticesToOneVertexOneWaySize() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("");
-        Map<Vertex, Integer> target = new HashMap<>();
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("");
+        Map<Vertex<String>, Integer> target = new HashMap<>();
         
         target.put(v2, 3);
         v1.addWeightTo(v2, 3);
@@ -109,10 +109,10 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     }
     
     @Test public void testGetVerticesToOneVertexTwoWay() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("");
-        Map<Vertex, Integer> target1 = new HashMap<>();
-        Map<Vertex, Integer> target2 = new HashMap<>();
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("");
+        Map<Vertex<String>, Integer> target1 = new HashMap<>();
+        Map<Vertex<String>, Integer> target2 = new HashMap<>();
 
         target1.put(v2, 3);
         v1.addWeightTo(v2, 3);
@@ -124,9 +124,9 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     }
     
     @Test public void TestGetVerticesToTwoVerticesSize() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("");
-        Vertex v3 = new Vertex("Cat");
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("");
+        Vertex<String> v3 = new Vertex<>("Cat");
 
         v1.addWeightTo(v2, 3);
         assertEquals(v1.getVerticesFrom().size(), 1);
@@ -135,10 +135,10 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     }
     
     @Test public void TestGetVerticesToTwoVerticesAddWeightOnce() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("");
-        Vertex v3 = new Vertex("Cat");
-        Map<Vertex, Integer> target = new HashMap<>();
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("");
+        Vertex<String> v3 = new Vertex<>("Cat");
+        Map<Vertex<String>, Integer> target = new HashMap<>();
 
         v1.addWeightTo(v2, 3);
         target.put(v2,  3);
@@ -150,10 +150,10 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     }
     
     @Test public void TestGetVerticesToTwoVerticesAddWeightTwice() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("");
-        Vertex v3 = new Vertex("Cat");
-        Map<Vertex, Integer> target = new HashMap<>();
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("");
+        Vertex<String> v3 = new Vertex<>("Cat");
+        Map<Vertex<String>, Integer> target = new HashMap<>();
 
         v1.addWeightTo(v2, 3);
         target.put(v2,  3);
@@ -166,14 +166,14 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     }    
     
     @Test public void testGetWeightZeroEdge() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("");
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("");
         assertEquals(v1.getWeightTo(v2), 0);
     }
     
     @Test public void testGetWeightOneEdge() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("");
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("");
         v1.addWeightTo(v2, 3);
         assertEquals(v1.getWeightTo(v2), 3);
         
@@ -182,9 +182,9 @@ public class ConcreteVerticesGraphTest extends GraphInstanceTest {
     }
     
     @Test public void testGetWeightTwoEdges() {
-        Vertex v1 = new Vertex("Chicken");
-        Vertex v2 = new Vertex("");
-        Vertex v3 = new Vertex("Cat");
+        Vertex<String> v1 = new Vertex<>("Chicken");
+        Vertex<String> v2 = new Vertex<>("");
+        Vertex<String> v3 = new Vertex<>("Cat");
         v1.addWeightTo(v2, 4);
         assertEquals(v1.getWeightTo(v2), 4);
         

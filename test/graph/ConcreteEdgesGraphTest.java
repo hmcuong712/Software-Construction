@@ -21,7 +21,7 @@ public class ConcreteEdgesGraphTest extends GraphInstanceTest {
      * Provide a ConcreteEdgesGraph for tests in GraphInstanceTest.
      */
     @Override public Graph<String> emptyInstance() {
-        return new ConcreteEdgesGraph();
+        return new ConcreteEdgesGraph<String>();
     }
     
     /*
@@ -85,48 +85,48 @@ public class ConcreteEdgesGraphTest extends GraphInstanceTest {
     
     // tests for operations of Edge
     @Test public void testWeightOfEdge() {
-        Edge edge = new Edge("Pig", "Chicken", 1);
+        Edge<String> edge = new Edge<>("Pig", "Chicken", 1);
         assertEquals(edge.getWeight(), 1);
     }
     
     @Test public void testSourceOfEdge() {
-        Edge edge = new Edge("Pig", "Chicken", 1);
+        Edge<String> edge = new Edge<>("Pig", "Chicken", 1);
         assertEquals(edge.getSource(), "Pig");
     }
     
     @Test public void testTargetOfEdge() {
-        Edge edge = new Edge("Pig", "Chicken", 1);
+        Edge<String> edge = new Edge<>("Pig", "Chicken", 1);
         assertEquals(edge.getTarget(), "Chicken");
     }
     
     @Test public void testOneCharacterSource() {
-        Edge edge = new Edge("a", "Chicken", 1);
+        Edge<String> edge = new Edge<>("a", "Chicken", 1);
         assertEquals(edge.getSource(), "a");    
     }
     
     @Test public void testOneCharacterTarget() {
-        Edge edge = new Edge("Pig", "c", 1);
+        Edge<String> edge = new Edge<>("Pig", "c", 1);
         assertEquals(edge.getTarget(), "c");    
     }
     
     @Test public void testZeroLengthSource() {
-        Edge edge = new Edge("", "Pig", 2);
+        Edge<String> edge = new Edge<>("", "Pig", 2);
         assertEquals(edge.getSource(), "");
     }
     
     @Test public void testZeroLengthTarget() {
-        Edge edge = new Edge("Pig", "", 2);
+        Edge<String> edge = new Edge<>("Pig", "", 2);
         assertEquals(edge.getTarget(), "");
     }
     
     @Test public void testMultipleWeightsOfEdges() {
-        Edge edge = new Edge("Pig", "Chicken", 999);
+        Edge<String> edge = new Edge<>("Pig", "Chicken", 999);
         assertEquals(edge.getWeight(), 999);
         
-        edge = new Edge("Pig", "Chicken", 1425);
+        edge = new Edge<>("Pig", "Chicken", 1425);
         assertEquals(edge.getWeight(), 1425);
         
-        edge = new Edge("Pig", "Chicken", 100);
+        edge = new Edge<>("Pig", "Chicken", 100);
         assertEquals(edge.getWeight(), 100);
     }
 }
