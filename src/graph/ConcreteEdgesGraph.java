@@ -28,6 +28,7 @@ public class ConcreteEdgesGraph<L> implements Graph<L> {
     // Safety from rep exposure:
     //   Vertices and edges are immutable data types
     //   All fields are private and final
+    //   Methods do not return direct reference to mutable data types
     
     // constructor
     public ConcreteEdgesGraph() {
@@ -37,7 +38,7 @@ public class ConcreteEdgesGraph<L> implements Graph<L> {
     private void checkRep() {
         for (Edge<L> e : edges) {
             assert e.getWeight() > 0;
-            assert !e.getSource().equals(e.getTarget());
+//            assert !e.getSource().equals(e.getTarget());
             assert vertices.contains(e.getSource()) && vertices.contains(e.getTarget());
         }
     }
@@ -150,7 +151,7 @@ class Edge<L> {
     //   Represent the connection between source -> target and its weight
     // Representation invariant:
     //   weight > 0 and non-null (doesn't need to specify this though)
-    //   source != target
+    //   source != target - not correct! 
     // Safety from rep exposure:
     //   All fields are private and all types in the rep are immutable.
     
@@ -166,7 +167,7 @@ class Edge<L> {
     // Check that rep invariant is true
     private void checkRep() {
         assert weight > 0;
-        assert (!source.equals(target));
+//        assert (!source.equals(target));
     }
     
     // methods
